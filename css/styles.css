@@ -561,8 +561,7 @@ input[type='checkbox'] {
 }
 
 .navbar-custom .navbar-brand.logo-image img {
-    width: 6.75rem;
-	height: 2rem;
+	height: 2.6rem;
 }
 
 .navbar-custom .navbar-brand.logo-text {
@@ -1582,7 +1581,7 @@ a:hover.back-to-top {
 	}
 
 	.header h1 {
-		font-size: 3.5rem;
+		font-size: 3.0rem;
 		line-height: 4rem;
 		letter-spacing: -0.3px;
 	}
