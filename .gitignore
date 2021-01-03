@@ -125,3 +125,6 @@ composer.phar
 sites/*/settings*.php
 sites/*/files
 sites/*/private
+
+# Local Netlify folder
+.netlify
