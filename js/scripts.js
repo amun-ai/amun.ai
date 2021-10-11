@@ -1,5 +1,5 @@
 /* Template: Zigo - Software Business HTML Landing Page Template
-   Author: Inovatik
+   Author: Amun AI
    Created: Sep 2019
    Description: Custom JS file
 */
