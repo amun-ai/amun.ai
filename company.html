@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Company — Amun AI</title>
+<meta name="description" content="Amun AI AB — founded on research from KTH Royal Institute of Technology, operating from SciLifeLab in Stockholm, Sweden.">
+<link rel="icon" type="image/svg+xml" href="images/amun-ai-logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #FFFFFF; --bg-alt: #FAFAFA;
+    --ink: #0A0A0A; --ink-soft: #444444; --ink-faint: #8C8C8C;
+    --line: #E8E8E8; --dark: #0A0A0A;
+    --radius: 14px; --max: 1120px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg); color: var(--ink);
+    font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+}
+::selection { background: rgba(0,0,0,0.1); }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.12; }
+a { color: inherit; text-decoration: none; }
+section { padding: 96px 0; }
+.kicker {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 18px;
+}
+.section-title { font-size: clamp(28px, 4vw, 40px); margin-bottom: 18px; }
+.section-lead { font-size: 18px; color: var(--ink-soft); max-width: 640px; }
+
+.nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+    max-width: var(--max); margin: 0 auto; padding: 0 28px;
+    height: 68px; display: flex; align-items: center; gap: 36px;
+}
+.logo { display: flex; align-items: center; }
+.logo img { height: 24px; display: block; }
+
+.nav-links { display: flex; gap: 30px; margin: 0 auto; }
+.nav-links a { font-size: 15px; font-weight: 500; color: var(--ink-soft); transition: color 0.15s ease; }
+.nav-links a:hover { color: var(--ink); }
+.nav-ctas { display: flex; align-items: center; gap: 20px; }
+.btn-ghost { font-size: 15px; font-weight: 500; color: var(--ink-soft); }
+.btn-ghost:hover { color: var(--ink); }
+.btn {
+    display: inline-block; background: var(--ink); color: #fff;
+    font-size: 15px; font-weight: 500; padding: 10px 22px;
+    border-radius: 100px; transition: background 0.15s ease;
+}
+.btn:hover { background: #333; }
+.btn-lg { padding: 14px 30px; font-size: 16px; }
+
+.hero { padding: 170px 0 70px; }
+.crumb { font-size: 14px; color: var(--ink-faint); margin-bottom: 26px; display: inline-block; }
+.crumb:hover { color: var(--ink); }
+.tag {
+    display: inline-block; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink); background: rgba(0,0,0,0.05);
+    padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
+}
+.hero h1 { font-size: clamp(38px, 5.6vw, 62px); letter-spacing: -0.03em; margin-bottom: 14px; }
+.motto { font-size: 19px; font-style: italic; color: var(--ink-faint); margin-bottom: 22px; }
+.hero p.lead { font-size: 19px; color: var(--ink-soft); max-width: 680px; }
+
+.visual-card {
+    margin-top: 56px; background: #fff; border: 1px solid var(--line);
+    border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/8;
+    box-shadow: 0 24px 70px rgba(25,70,70,0.1);
+}
+.visual-card canvas { width: 100%; height: 100%; display: block; }
+
+.steps { border-top: 1px solid var(--line); background: var(--bg-alt); }
+.step-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 52px; }
+.step .num { font-size: 13px; font-weight: 600; color: var(--ink-faint); letter-spacing: 0.08em; }
+.step h3 { font-size: 19px; margin: 14px 0 8px; }
+.step p { font-size: 15.5px; color: var(--ink-soft); }
+
+.cap-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 52px; }
+.cap {
+    border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 26px; background: #fff;
+}
+.cap h3 { font-size: 16.5px; margin-bottom: 7px; }
+.cap p { font-size: 14.5px; color: var(--ink-soft); }
+
+.facts { border-top: 1px solid var(--line); }
+.fact-row { display: flex; gap: 48px; flex-wrap: wrap; margin-top: 40px; }
+.fact { flex: 1; min-width: 200px; }
+.fact strong { display: block; font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+.fact span { font-size: 14.5px; color: var(--ink-soft); }
+
+.cta { background: var(--dark); color: #EDEDED; text-align: center; }
+.cta h2 { color: #fff; font-size: clamp(28px, 4vw, 40px); margin-bottom: 16px; }
+.cta p { color: #A4A8A9; max-width: 540px; margin: 0 auto 32px; }
+.btn-white { background: #fff; color: var(--ink); }
+.btn-white:hover { background: #E4E4E4; }
+
+.others { border-top: 1px solid var(--line); }
+.other-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 40px; }
+.other-card {
+    border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 26px; background: #fff; transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.other-card:hover { box-shadow: 0 14px 40px rgba(25,70,70,0.1); transform: translateY(-2px); }
+.other-card h3 { font-size: 17px; margin-bottom: 6px; }
+.other-card p { font-size: 14.5px; color: var(--ink-soft); }
+.other-card .go { display: inline-block; margin-top: 12px; font-size: 14px; font-weight: 500; }
+
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 52px; }
+.member img {
+    width: 100%; aspect-ratio: 1/1; object-fit: cover;
+    border-radius: 50%; filter: grayscale(100%);
+    transition: filter 0.3s ease; display: block;
+}
+.member:hover img { filter: grayscale(0%); }
+.member-ph {
+    width: 100%; aspect-ratio: 1/1; border-radius: var(--radius);
+    background: var(--bg-alt); border: 1px solid var(--line); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 44px; font-weight: 600; letter-spacing: 0.04em;
+    color: var(--ink-faint);
+}
+.member { position: relative; }
+.member .bio {
+    position: absolute; left: 50%; top: calc(100% + 10px);
+    transform: translateX(-50%) translateY(-6px);
+    width: 112%; max-width: 86vw;
+    background: #fff; border: 1px solid var(--line); border-radius: 12px;
+    padding: 15px 18px; text-align: left;
+    font-size: 13.5px; line-height: 1.55; color: var(--ink-soft);
+    box-shadow: 0 18px 46px rgba(25,70,70,0.16);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    z-index: 5;
+}
+.member .bio::before {
+    content: ""; position: absolute; top: -6px; left: 50%;
+    width: 10px; height: 10px; transform: translateX(-50%) rotate(45deg);
+    background: #fff; border-left: 1px solid var(--line); border-top: 1px solid var(--line);
+}
+.member:hover .bio { opacity: 1; transform: translateX(-50%); }
+.member .name { font-size: 17px; font-weight: 600; margin-top: 16px; }
+.member .mail { display: inline-block; font-size: 13.5px; color: var(--ink-faint); margin-top: 4px; transition: color 0.15s ease; }
+.member .mail:hover { color: var(--ink); }
+.member .role { font-size: 15px; color: var(--ink-soft); }
+footer { border-top: 1px solid var(--line); padding: 44px 0; }
+.foot-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+.foot-inner p, .foot-inner a { font-size: 14px; color: var(--ink-faint); }
+.foot-inner a:hover { color: var(--ink); }
+.foot-links { display: flex; gap: 24px; }
+
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+.hamburger {
+    display: none; background: none; border: none; cursor: pointer;
+    width: 40px; height: 40px; flex-shrink: 0;
+}
+.hamburger span {
+    display: block; width: 20px; height: 2px; background: var(--ink);
+    margin: 5px auto;
+}
+.mobile-menu {
+    display: none; position: fixed; top: 68px; left: 0; right: 0; z-index: 99;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line); padding: 10px 28px 26px;
+}
+.mobile-menu.open { display: block; }
+.mobile-menu a {
+    display: block; padding: 14px 0; font-size: 17px; font-weight: 500;
+    color: var(--ink); border-bottom: 1px solid var(--line);
+}
+.mobile-menu a:last-child { border-bottom: none; }
+
+@media (max-width: 991px) {
+    .nav-links { display: none; }
+    .btn-ghost { display: none; }
+    .hamburger { display: block; margin-left: auto; }
+    .nav-ctas { margin-left: 0; gap: 12px; }
+    .nav-inner { gap: 16px; }
+    .step-grid, .cap-grid { grid-template-columns: 1fr; gap: 28px; }
+    .other-grid { grid-template-columns: 1fr; }
+    .visual-card { aspect-ratio: 16/10; }
+}
+@media (max-width: 860px) {
+    .team-grid { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+}
+@media (max-width: 600px) {
+    body { font-size: 16px; }
+    section { padding: 64px 0; }
+    .wrap { padding: 0 20px; }
+    .nav-inner { padding: 0 20px; height: 62px; }
+    .mobile-menu { top: 62px; }
+    .hero { padding: 120px 0 50px; }
+    .btn { padding: 9px 18px; font-size: 14px; }
+    .fact-row { gap: 28px; }
+}
+@media (max-width: 480px) {
+    .team-grid { grid-template-columns: 1fr; max-width: 300px; margin-left: auto; margin-right: auto; }
+}
+/* touch devices: hover tooltips don't exist — show bios inline */
+@media (hover: none), (max-width: 700px) {
+    .member { display: flex; flex-direction: column; }
+    .member .bio { order: 5; }
+    .member .bio {
+        position: static; transform: none; opacity: 1;
+        width: auto; max-width: none; pointer-events: auto;
+        background: none; border: none; border-radius: 0;
+        box-shadow: none; padding: 8px 0 0;
+        font-size: 13px; color: var(--ink-faint);
+    }
+    .member .bio::before { display: none; }
+    .member img { filter: grayscale(0%); }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+    <div class="nav-inner">
+        <a class="logo" href="index.html"><img src="images/amun-ai-logo.svg" alt="Amun AI"></a>
+        <div class="nav-links">
+            <a href="index.html#protection">Data Protection</a>
+            <a href="index.html#industries">Industries</a>
+            <a href="company.html">Company</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+        <div class="nav-ctas">
+            <a class="btn-ghost" href="mailto:info@amun.ai">Talk to Us</a>
+            <a class="btn" href="index.html#demo">Book a Demo</a>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#protection">Data Protection</a>
+    <a href="index.html#industries">Industries</a>
+    <a href="company.html">Company</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="mailto:info@amun.ai">Talk to Us</a>
+</div>
+
+<header class="hero">
+    <div class="wrap">
+        <a class="crumb" href="index.html">← Home</a><br>
+        <span class="tag">Company</span>
+        <h1>Built by researchers who lived the problem.</h1>
+        <div class="motto">From KTH research to the world's most sensitive datasets.</div>
+        <p class="lead">Amun AI AB was founded on research from KTH Royal Institute of Technology — where the tension between data protection and data-driven science is a daily reality. We build the infrastructure that unlocks the world's sensitive data for AI, without ever moving it.</p>
+    </header>
+
+<section class="steps">
+    <div class="wrap">
+        <div class="reveal">
+            <div class="kicker">Leadership</div>
+            <h2 class="section-title">The team.</h2>
+        </div>
+        <div class="team-grid">
+            <div class="member reveal">
+                <img src="images/JOANNA.jpeg" alt="Joanna Hård">
+                <div class="bio">PhD in medicine, Karolinska Institutet. Postdoctoral research in computational biology at ETHZ and KTH. Enterprise partnerships in regulated industries, commercial strategy and fundraising.</div>
+                <div class="name">Joanna Hård</div>
+                <div class="role">Chief Executive Officer</div>
+                <a class="mail" href="mailto:joanna@amun.ai">joanna@amun.ai</a>
+            </div>
+            <div class="member reveal">
+                <img src="images/WEI.png" alt="Wei Ouyang">
+                <div class="bio">Assistant professor at KTH. Architect of Amun AI technology with production deployments across European and US research infrastructure and telecom. AI-native CTO, building with agent fleet.</div>
+                <div class="name">Wei Ouyang</div>
+                <div class="role">Chief Technology Officer</div>
+                <a class="mail" href="mailto:wei@amun.ai">wei@amun.ai</a>
+            </div>
+            <div class="member reveal">
+                <img src="images/EMMA.png" alt="Emma Lundberg">
+                <div class="bio">Associate professor at Stanford, Professor at KTH. Built and directs the Human Protein Atlas. Advises pharma and global AI initiatives including the Chan Zuckerberg Initiative.</div>
+                <div class="name">Emma Lundberg</div>
+                <div class="role">Advisor</div>
+            </div>
+            <div class="member reveal">
+                <img src="images/PER.jpg" alt="Per Aniansson">
+                <div class="bio">MSc Engineering Physics, Chalmers; MBA, INSEAD. 25 years as VC, entrepreneur, CEO and CFO — early-stage deep-tech through to industrial scale-up.</div>
+                <div class="name">Per Aniansson</div>
+                <div class="role">Chairman &amp; CFO</div>
+                <a class="mail" href="mailto:per@amun.ai">per@amun.ai</a>
+            </div>
+            <div class="member reveal">
+                <img src="images/EMRE.jpg" alt="Emre Süren">
+                <div class="bio">PhD. Head of the Royal Hacking Lab, KTH. Researches LLM security and cyber threat intelligence. Leads Amun AI's adversarial attack program.</div>
+                <div class="name">Emre Süren</div>
+                <div class="role">Operational Security Advisor</div>
+                <a class="mail" href="mailto:emre@amun.ai">emre@amun.ai</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="wrap">
+        <div class="reveal">
+            <div class="kicker">Roots</div>
+            <h2 class="section-title">Where we come from.</h2>
+        </div>
+        <div class="cap-grid">
+            <div class="cap reveal">
+                <h3>KTH &amp; SciLifeLab, Stockholm</h3>
+                <p>Founded on research from KTH — Sweden's leading technical university — and operating from SciLifeLab, the national hub for molecular biosciences, surrounded daily by the researchers and datasets we build for.</p>
+            </div>
+            <div class="cap reveal">
+                <h3>Open-source heritage</h3>
+                <p>Our tools grew from the open-source ImJoy project, published in Nature Methods and used by research groups worldwide.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="facts">
+    <div class="wrap">
+        <div class="reveal">
+            <div class="kicker">Contact</div>
+            <div class="fact-row">
+                <div class="fact reveal"><strong>Amun AI AB</strong><span>Stockholm, Sweden</span></div>
+                <div class="fact reveal"><strong>info@amun.ai</strong><span>We answer quickly — usually the same day.</span></div>
+                <div class="fact reveal"><strong>LinkedIn</strong><span><a href="https://se.linkedin.com/company/amun-ai" target="_blank" rel="noopener">linkedin.com/company/amun-ai</a></span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="wrap">
+        <h2>Come talk to us.</h2>
+        <p>Whether you're a hospital, a lab, an agency, or an enterprise — we'd like to hear what your data could do if it could work together.</p>
+        <a class="btn btn-white btn-lg" href="index.html#demo">Book a Demo</a>
+    </div>
+</section>
+
+
+
+<footer>
+    <div class="wrap foot-inner">
+        <p>© 2025 Amun AI AB — Stockholm, Sweden</p>
+        <div class="foot-links">
+            <a href="https://www.nature.com/articles/s41592-019-0627-0" target="_blank" rel="noopener">ImJoy in Nature Methods</a>
+            <a href="https://se.linkedin.com/company/amun-ai" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="mailto:info@amun.ai">info@amun.ai</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+var DPR = Math.min(window.devicePixelRatio || 1, 2);
+var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var TEAL = '52,135,139', INK_D = '28,68,71';
+function miniCanvas(id, draw) {
+    var cv = document.getElementById(id);
+    if (!cv) return;
+    var c = cv.getContext('2d');
+    var w, h;
+    function rs() {
+        w = cv.offsetWidth; h = cv.offsetHeight;
+        cv.width = w * DPR; cv.height = h * DPR;
+        c.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+    rs();
+    window.addEventListener('resize', rs);
+    var tt = 0;
+    (function loop() {
+        tt++;
+        c.clearRect(0, 0, w, h);
+        draw(c, w, h, tt);
+        if (!reduced) requestAnimationFrame(loop);
+    })();
+}
+function dot(c, x, y, r, col) {
+    c.fillStyle = col;
+    c.beginPath(); c.arc(x, y, r, 0, Math.PI * 2); c.fill();
+}
+var tealA = function (a) { return 'rgba(' + TEAL + ',' + a + ')'; };
+var inkA = function (a) { return 'rgba(10,10,10,' + a + ')'; };
+
+// Mobile menu
+var burger = document.getElementById('hamburger');
+var menu = document.getElementById('mobileMenu');
+if (burger) burger.addEventListener('click', function () { menu.classList.toggle('open'); });
+
+// Reveal on scroll
+var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+</script>
+</body>
+</html>

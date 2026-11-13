@@ -1,482 +1,1329 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Revolutionizing scientific data management with AI. At Amun AI, we empower research and healthcare with secure, innovative AI solutions.">
-    <meta name="author" content="Amun AI">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amun AI — Unlock the world's data for AI. Without moving it.</title>
+<meta name="description" content="Securely connect AI agents to distributed enterprise data while keeping sensitive information under the control of its owners.">
+<link rel="icon" type="image/svg+xml" href="images/amun-ai-logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #FFFFFF;
+    --bg-alt: #FAFAFA;
+    --ink: #0A0A0A;
+    --ink-soft: #444444;
+    --ink-faint: #8C8C8C;
+    --accent: #0A0A0A;
+    --accent-dark: #333333;
+    --line: #E8E8E8;
+    --dark: #0A0A0A;
+    --dark-ink: #EDEDED;
+    --radius: 14px;
+    --max: 1120px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+::selection { background: rgba(0,0,0,0.1); }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.12; }
+a { color: inherit; text-decoration: none; }
+section { padding: 108px 0; }
+.kicker {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 18px;
+}
+.section-title { font-size: clamp(30px, 4.4vw, 44px); margin-bottom: 18px; }
+.section-lead { font-size: 19px; color: var(--ink-soft); max-width: 640px; }
 
-    <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
-	<meta property="og:site_name" content="Amun.AI" />
-	<meta property="og:site" content="https://amun.ai" />
-	<meta property="og:title" content="Amun AI - Empowering Research with AI" />
-	<meta property="og:description" content="Unlock the full potential of your scientific data with our advanced AI solutions. Secure, compliant, and designed for impactful discoveries." />
-	<meta property="og:image" content="" />
-	<meta property="og:url" content="" />
-	<meta property="og:type" content="article" />
+/* ---------- Nav ---------- */
+.nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    transition: background 0.25s ease, border-color 0.25s ease, backdrop-filter 0.25s ease;
+    border-bottom: 1px solid transparent;
+}
+.nav.scrolled {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom-color: var(--line);
+}
+.nav-inner {
+    max-width: var(--max); margin: 0 auto; padding: 0 28px;
+    height: 68px; display: flex; align-items: center; gap: 36px;
+}
+.logo { display: flex; align-items: center; }
+.logo img { height: 24px; display: block; }
 
-    <!-- Website Title -->
-    <title>Amun AI - AI on Invisible Data</title>
-    
-    <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext" rel="stylesheet">
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/fontawesome-all.css" rel="stylesheet">
-    <link href="css/swiper.css" rel="stylesheet">
-	<link href="css/magnific-popup.css" rel="stylesheet">
-	<link href="css/styles.css" rel="stylesheet">
-	
-	<!-- Favicon  -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="apple-mobile-web-app-title" content="Amun.AI">
-    <meta name="application-name" content="Amun.AI">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
+.nav-links { display: flex; gap: 30px; margin: 0 auto; }
+.nav-links a {
+    font-size: 15px; font-weight: 500; color: var(--ink-soft);
+    transition: color 0.15s ease;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-ctas { display: flex; align-items: center; gap: 20px; }
+.btn-ghost { font-size: 15px; font-weight: 500; color: var(--ink-soft); transition: color 0.15s; }
+.btn-ghost:hover { color: var(--ink); }
+.btn {
+    display: inline-block; background: var(--ink); color: #fff;
+    font-size: 15px; font-weight: 500; padding: 10px 22px;
+    border-radius: 100px; transition: background 0.15s ease, transform 0.15s ease;
+}
+.btn:hover { background: #333; }
+.btn-accent { background: var(--ink); }
+.btn-accent:hover { background: #333; }
+.btn-lg { padding: 14px 30px; font-size: 16px; }
+.btn-outline {
+    display: inline-block; font-size: 16px; font-weight: 500;
+    padding: 13px 28px; border-radius: 100px;
+    border: 1px solid var(--line); color: var(--ink);
+    transition: border-color 0.15s ease;
+}
+.btn-outline:hover { border-color: var(--ink-faint); }
+.hamburger {
+    display: none; background: none; border: none; cursor: pointer;
+    width: 40px; height: 40px; position: relative; flex-shrink: 0;
+}
+.hamburger span {
+    display: block; width: 20px; height: 2px; background: var(--ink);
+    margin: 5px auto; transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.mobile-menu {
+    display: none; position: fixed; top: 68px; left: 0; right: 0; z-index: 99;
+    background: rgba(251,250,248,0.97); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line); padding: 10px 28px 26px;
+}
+.mobile-menu.open { display: block; }
+.mobile-menu a {
+    display: block; padding: 14px 0; font-size: 17px; font-weight: 500;
+    color: var(--ink); border-bottom: 1px solid var(--line);
+}
+.mobile-menu a:last-child { border-bottom: none; }
+
+/* ---------- Opener (Runway-style framed module) ---------- */
+.opener {
+    position: relative; height: 100vh; height: 100svh;
+    padding: 88px 24px 28px; background: var(--bg);
+}
+.opener-frame {
+    position: relative; width: 100%; height: 100%;
+    max-width: 1480px; margin: 0 auto;
+    background: #fff; border: 1px solid var(--line); border-radius: 22px;
+    box-shadow: 0 32px 90px rgba(25,70,70,0.13), 0 6px 24px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+#mesh { position: absolute; inset: 0; width: 100%; height: 100%; cursor: crosshair; touch-action: pan-y; }
+.opener-corner {
+    position: absolute; left: 0; bottom: 0; z-index: 2;
+    padding: 0 42px 42px;
+    pointer-events: none;
+}
+.opener-corner > * { pointer-events: auto; }
+.opener-corner h1 {
+    font-size: clamp(32px, 4.6vw, 58px);
+    font-weight: 600; letter-spacing: -0.03em; line-height: 1.06;
+    max-width: 720px; margin-bottom: 14px;
+}
+.opener-corner .h1-sub { color: var(--ink-faint); }
+.opener-vision {
+    font-size: clamp(16px, 2vw, 21px); font-weight: 400;
+    color: var(--ink-faint); max-width: 560px; margin-bottom: 30px;
+    line-height: 1.45;
+}
+.opener-ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+
+/* ---------- Products trio (Runway-style) ---------- */
+.solutions-grid { grid-template-columns: repeat(2, 1fr) !important; }
+.why-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 20px; }
+.product-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px;
+}
+.product-card {
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: #fff; overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.product-card:hover { box-shadow: 0 18px 50px rgba(25,70,70,0.10); transform: translateY(-3px); }
+.product-media {
+    background: var(--bg-alt); border-bottom: 1px solid var(--line);
+    aspect-ratio: 16/10;
+}
+.product-media canvas { width: 100%; height: 100%; display: block; }
+.product-body { padding: 24px 24px 26px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.product-body h3 { font-size: 20px; }
+.product-body p { font-size: 15px; color: var(--ink-soft); flex: 1; }
+.product-learn {
+    display: inline-flex; align-items: center; gap: 6px; width: max-content;
+    font-size: 15px; font-weight: 500; color: var(--ink);
+    border: 1px solid var(--line); border-radius: 100px; padding: 9px 20px;
+    transition: border-color 0.15s ease;
+}
+.product-learn:hover { border-color: var(--ink-faint); }
+
+#why { border-top: 1px solid var(--line); }
+
+/* ---------- Solutions ---------- */
+.solutions { background: var(--bg-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.solution-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+    align-items: center; padding: 64px 0;
+}
+.solution-row + .solution-row { border-top: 1px solid var(--line); }
+.solution-tag {
+    display: inline-block; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); background: rgba(0,0,0,0.05);
+    padding: 5px 12px; border-radius: 100px; margin-bottom: 16px;
+}
+.solution-row h3 { font-size: 28px; margin-bottom: 8px; }
+.solution-motto { font-size: 16px; font-style: italic; color: var(--ink-faint); margin-bottom: 16px; }
+.solution-row p { color: var(--ink-soft); font-size: 16.5px; margin-bottom: 18px; }
+.solution-row ul { list-style: none; }
+.solution-row li {
+    font-size: 15.5px; color: var(--ink-soft); padding: 7px 0 7px 26px;
+    position: relative;
+}
+.solution-row li::before {
+    content: ""; position: absolute; left: 0; top: 15px;
+    width: 14px; height: 2px; background: var(--accent);
+}
+.solution-visual {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+    aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
+}
+.solution-visual svg { width: 78%; height: auto; }
+.solution-visual canvas { width: 100%; height: 100%; display: block; }
+.visual-dark { background: var(--dark); border-color: #22252C; }
+
+/* ---------- Data protection ---------- */
+.protect { border-top: 1px solid var(--line); }
+.protect-grid {
+    display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px;
+    margin-top: 56px; align-items: center;
+}
+.protect-list { list-style: none; }
+.protect-list li { padding: 22px 0; }
+.protect-list li + li { border-top: 1px solid var(--line); }
+.protect-list h3 { font-size: 19px; margin-bottom: 6px; }
+.protect-list p { font-size: 15.5px; color: var(--ink-soft); }
+.protect-demo {
+    position: relative;
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+    aspect-ratio: 16/10; overflow: hidden;
+    box-shadow: 0 18px 50px rgba(25,70,70,0.08);
+}
+.protect-demo canvas { width: 100%; height: 100%; display: block; background: #F3F5F5; }
+.protect-demo video {
+    display: none; position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover; background: #000;
+}
+.protect-demo.has-video video { display: block; }
+.protect-demo.has-video canvas { visibility: hidden; }
+
+/* ---------- Film modal ---------- */
+.film-modal {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(8,12,12,0.9);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    align-items: center; justify-content: center;
+    padding: max(28px, env(safe-area-inset-top)) max(28px, env(safe-area-inset-right)) max(28px, env(safe-area-inset-bottom)) max(28px, env(safe-area-inset-left));
+}
+.film-modal.open { display: flex; }
+.film-modal-inner { position: relative; width: min(1100px, 94vw); }
+.film-modal video {
+    display: block; width: 100%; height: auto;
+    max-height: min(82vh, 82svh); object-fit: contain;
+    border-radius: var(--radius); background: #000;
+    box-shadow: 0 40px 120px rgba(0,0,0,0.6);
+}
+.film-modal-close {
+    position: absolute; top: -44px; right: 0;
+    background: none; border: none; cursor: pointer;
+    color: #fff; font-size: 28px; line-height: 1; font-family: inherit;
+    opacity: 0.8; transition: opacity 0.15s ease;
+}
+.film-modal-close:hover { opacity: 1; }
+.film-modal-caption { margin-top: 14px; font-size: 14px; color: #9BA3A4; text-align: center; }
+@media (max-height: 520px) {
+    .film-modal { padding: 10px; }
+    .film-modal video { max-height: min(92vh, 92svh); }
+    .film-modal-close {
+        top: 6px; right: 6px; z-index: 2;
+        width: 36px; height: 36px; border-radius: 50%;
+        background: rgba(0,0,0,0.55); font-size: 22px;
+    }
+    .film-modal-caption { display: none; }
+}
+
+/* ---------- Use-case cinematic cards ---------- */
+.uc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+.uc-card {
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: #fff; overflow: hidden; display: flex; flex-direction: column;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.uc-card:hover { box-shadow: 0 18px 50px rgba(25,70,70,0.10); transform: translateY(-3px); }
+.uc-media { position: relative; aspect-ratio: 16/10; background: #DEE5E6; border-bottom: 1px solid var(--line); }
+.uc-media canvas { width: 100%; height: 100%; display: block; }
+.uc-media video {
+    display: none; position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    filter: saturate(0.72) contrast(0.96) brightness(1.03); /* nordic grade */
+}
+.uc-media.has-video video { display: block; }
+.uc-media.has-video canvas { visibility: hidden; }
+.uc-body { padding: 20px 22px 24px; }
+.uc-body h3 { font-size: 17px; margin-bottom: 7px; }
+.uc-body p { font-size: 14.5px; color: var(--ink-soft); }
+/* ---------- Team ---------- */
+.team { background: var(--bg-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.team-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 56px;
+}
+.member { text-align: left; }
+.member img {
+    width: 100%; aspect-ratio: 1/1; object-fit: cover;
+    border-radius: var(--radius); filter: grayscale(100%);
+    transition: filter 0.3s ease; display: block;
+}
+.member:hover img { filter: grayscale(0%); }
+.member .name { font-size: 17px; font-weight: 600; margin-top: 16px; }
+.member .role { font-size: 15px; color: var(--ink-soft); }
+
+/* ---------- Contact ---------- */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; margin-top: 56px; }
+.contact-info p { color: var(--ink-soft); margin-bottom: 22px; font-size: 16px; }
+.contact-info .addr { font-size: 15px; color: var(--ink-faint); line-height: 1.7; }
+.contact-info a.mail { color: var(--accent); font-weight: 500; }
+form label {
+    display: block; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--ink-faint); margin: 22px 0 8px;
+}
+form label:first-child { margin-top: 0; }
+form input, form select, form textarea {
+    width: 100%; font-family: inherit; font-size: 16px; color: var(--ink);
+    background: #fff; border: 1px solid var(--line); border-radius: 10px;
+    padding: 13px 16px; outline: none; transition: border-color 0.15s ease;
+}
+form input:focus, form select:focus, form textarea:focus { border-color: var(--accent); }
+form textarea { min-height: 110px; resize: vertical; }
+form button {
+    margin-top: 28px; border: none; cursor: pointer; font-family: inherit;
+}
+
+/* ---------- Footer ---------- */
+footer { border-top: 1px solid var(--line); padding: 44px 0; }
+.foot-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 20px; flex-wrap: wrap;
+}
+.foot-inner p, .foot-inner a { font-size: 14px; color: var(--ink-faint); }
+.foot-inner a:hover { color: var(--ink); }
+.foot-links { display: flex; gap: 24px; }
+
+/* ---------- Reveal ---------- */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 991px) {
+    .nav-links { display: none; }
+    .btn-ghost { display: none; }
+    .hamburger { display: block; margin-left: auto; }
+    .nav-ctas { margin-left: 0; }
+    .nav-inner { gap: 16px; }
+    .solutions-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .why-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .product-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .protect-grid { grid-template-columns: 1fr; gap: 36px; }
+    .solution-row { grid-template-columns: 1fr; gap: 32px; padding: 52px 0; }
+    .solution-visual { order: -1; max-width: 480px; }
+    .platform-grid { grid-template-columns: 1fr; }
+    .uc-grid { grid-template-columns: repeat(2, 1fr); }
+    .team-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+}
+@media (max-width: 600px) {
+    body { font-size: 16px; }
+    section { padding: 72px 0; }
+    .wrap { padding: 0 20px; }
+    .nav-inner { padding: 0 20px; height: 62px; }
+    .mobile-menu { top: 62px; }
+    .opener { padding: 74px 12px 16px; }
+    .opener-corner { padding: 0 22px 26px; }
+    .opener-ctas .btn-lg, .opener-ctas .btn-outline { padding: 12px 22px; font-size: 15px; }
+    .uc-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr !important; }
+    .btn { padding: 9px 18px; font-size: 14px; }
+}
+</style>
 </head>
-<body data-spy="scroll" data-target=".fixed-top">
-    
-    <!-- Preloader -->
-	<div class="spinner-wrapper">
-        <div class="spinner">
-            <div class="bounce1"></div>
-            <div class="bounce2"></div>
-            <div class="bounce3"></div>
+<body>
+
+<!-- Nav -->
+<nav class="nav" id="nav">
+    <div class="nav-inner">
+        <a class="logo" href="#top"><img src="images/amun-ai-logo.svg" alt="Amun AI"></a>
+        <div class="nav-links">
+            <a href="#industries">Industries</a>
+            <a href="#" data-film>Film</a>
+            <a href="company.html">Company</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-ctas">
+            <a class="btn-ghost" href="mailto:info@amun.ai">Talk to Us</a>
+            <a class="btn" href="#demo">Book a Demo</a>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </div>
-    <!-- end of preloader -->
-    
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-        <div class="container">
-            <!-- Image Logo -->
-            <a class="navbar-brand logo-image" href="index.html"><img src="images/amun-ai-logo-tight.svg" alt="alternative"></a>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#industries">Industries</a>
+    <a href="#" data-film>Film</a>
+    <a href="company.html">Company</a>
+    <a href="#contact">Contact</a>
+    <a href="mailto:info@amun.ai">Talk to Us</a>
+</div>
 
-            <!-- Mobile Menu Toggle Button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-awesome fas fa-bars"></span>
-                <span class="navbar-toggler-awesome fas fa-times"></span>
-            </button>
-            <!-- end of mobile menu toggle button -->
-
-            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#header">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" href="/#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" href="/#demo">Demo</a>
-                    </li>
-
-                    <!-- Dropdown Menu -->          
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle page-scroll" href="#about" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">About</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="terms-conditions.html"><span class="item-text">Terms Conditions</span></a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="privacy-policy.html"><span class="item-text">Privacy Policy</span></a>
-                        </div>
-                    </li>
-                    <!-- end of dropdown menu -->
-
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#contact">Contact</a>
-                    </li>
-                </ul>
-                <span class="nav-item social-icons">
-                    <span class="fa-stack">
-                        <a href="https://se.linkedin.com/company/amun-ai" target="_blank">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fab fa-linkedin fa-stack-1x"></i>
-                        </a>
-                    </span>
-                </span>
+<!-- Opener -->
+<header class="opener" id="top">
+    <div class="opener-frame">
+        <canvas id="mesh"></canvas>
+        <div class="opener-corner">
+            <h1>Unlock the world's data for AI.<br><span class="h1-sub">Without moving it.</span></h1>
+            <p class="opener-vision">A world where data works together — without ever leaving home.</p>
+            <div class="opener-ctas">
+                <a class="btn btn-accent btn-lg" href="#demo">Book a Demo</a>
+                <a class="btn-outline" href="#" data-film>Watch the film</a>
             </div>
-        </div> <!-- end of container -->
-    </nav> <!-- end of navbar -->
-    <!-- end of navigation -->
+        </div>
+    </div>
+</header>
 
-    <!-- Header -->
-    <header id="header" class="header">
-        <div class="header-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-xl-5">
-                        <div class="text-container">
-                            <h1>AI on Invisible Data</h1>
-                            <p class="p-large">Empower your research with our AI-driven data management and model serving platform. Secure and innovative, designed for impactful discoveries.</p>
-                            <a class="btn-solid-lg page-scroll" href="/#services">DISCOVER</a>
-                            <a class="btn-outline-lg page-scroll" href="/#demo">Request a demo</a>
-                        </div> <!-- end of text-container -->
-                    </div> <!-- end of col -->
-                    <div class="col-lg-6 col-xl-7">
-                        <div class="image-container">
-                            <img class="img-fluid" src="images/cartoon-tree-ai.png" alt="alternative">
-                        </div> <!-- end of image-container -->
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-            </div> <!-- end of container -->
-        </div> <!-- end of header-content -->
-    </header> <!-- end of header -->
-    <svg class="frame-decorative" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1920 150"><defs><style>.cls-1{fill:#f4f9ff;}</style></defs><title>frame-decorative</title><path class="cls-1" d="M0,81.411c143,57.608,255.5,64.833,328.644,61.616,147.721-6.5,183.881-57.563,320.829-51.347,143,6.491,167.826,65.1,293,58.193,109.095-6.018,115.68-51.946,225.251-54.77,113.58-2.928,138.8,45.589,251.189,39.936,104.012-5.231,109.713-48.158,197.369-44.5,89.549,3.736,124.375,50.226,227.622,47.924a353.34,353.34,0,0,0,76.1-10.269V0.5H0V81.411Z" transform="translate(0 -0.5)"/></svg>
-    <!-- end of header -->
+<!-- Data protection -->
+<section class="protect" id="protection">
+    <div class="wrap">
+        <div class="reveal">
+            <div class="kicker">Data protection</div>
+            <h2 class="section-title">Your data never leaves home.</h2>
+            <p class="section-lead">Partners get answers — never access. You set the rules, your own infrastructure enforces them, and you hold the complete record.</p>
+        </div>
+        <div class="protect-grid">
+            <ul class="protect-list reveal">
+                <li>
+                    <h3>You set the rules</h3>
+                    <p>You decide what may ever leave your institution — aggregates only, no identifiers, nothing below a group size. Your rules are enforced automatically, on your side.</p>
+                </li>
+                <li>
+                    <h3>Answers travel. Data doesn't.</h3>
+                    <p>Partners ask questions and receive approved answers. The analysis happens inside your own infrastructure — raw data never leaves your control.</p>
+                </li>
+                <li>
+                    <h3>You hold the complete record</h3>
+                    <p>Every request and every result is recorded on your side — compliance evidence that belongs to you, not to your collaborator.</p>
+                </li>
+            </ul>
+            <div class="protect-demo reveal">
+                <canvas id="vis-protect"></canvas>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <!-- Services -->
-    <div id="services" class="cards-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2 class="h2-heading">Integrating Data, Compute, and Generative AI for Revolutionary Insights</h2>
-                    <p>Amun AI is dedicated to advancing the capabilities of researchers through sophisticated AI, data management, and collaboration solutions. Our platform is tailored to meet the needs of sensitive data handling and advanced computational workflows.</p>
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-            <div class="row">
-                <div class="col-lg-12">
+<!-- Use cases -->
+<section id="industries">
+    <div class="wrap">
+        <div class="reveal">
+            <div class="kicker">Industries</div>
+            <h2 class="section-title">One principle, every regulated industry.</h2>
+            <p class="section-lead">Wherever valuable data is locked in place by regulation, confidentiality, or competition — the work can go to the data instead.</p>
+        </div>
+        <div class="uc-grid">
+            <div class="uc-card reveal">
+                <div class="uc-media" data-video="videos/uc-healthcare.mp4"><canvas id="uc-health"></canvas></div>
+                <div class="uc-body">
+                    <h3>Healthcare &amp; life science</h3>
+                    <p>Hospitals and labs collaborate on patient and genomic data across borders — AI models train and analyze without a single record leaving the clinic.</p>
+                </div>
+            </div>
+            <div class="uc-card reveal">
+                <div class="uc-media" data-video="videos/uc-government.mp4"><canvas id="uc-gov"></canvas></div>
+                <div class="uc-body">
+                    <h3>Government &amp; public sector</h3>
+                    <p>Agencies compute on each other's registries — within and between authorities — while each remains the sole custodian of its citizens' data.</p>
+                </div>
+            </div>
+            <div class="uc-card reveal">
+                <div class="uc-media" data-video="videos/uc-finance.mp4"><canvas id="uc-fin"></canvas></div>
+                <div class="uc-body">
+                    <h3>Finance &amp; insurance</h3>
+                    <p>Banks and insurers run joint fraud and risk models on combined signals — with every institution's transactions staying in-house.</p>
+                </div>
+            </div>
+            <div class="uc-card reveal">
+                <div class="uc-media" data-video="videos/uc-corporate.mp4"><canvas id="uc-corp"></canvas></div>
+                <div class="uc-body">
+                    <h3>Intra-corporate</h3>
+                    <p>Business units and subsidiaries share AI workloads across legal entities and jurisdictions without moving data across the lines that separate them.</p>
+                </div>
+            </div>
+            <div class="uc-card reveal">
+                <div class="uc-media" data-video="videos/uc-research.mp4"><canvas id="uc-res"></canvas></div>
+                <div class="uc-body">
+                    <h3>Research &amp; academia</h3>
+                    <p>Universities and institutes pool rare datasets for joint studies — each partner keeps full control, every access is attributed and traceable.</p>
+                </div>
+            </div>
+            <div class="uc-card reveal">
+                <div class="uc-media" data-video="videos/uc-dataeconomy.mp4"><canvas id="uc-econ"></canvas></div>
+                <div class="uc-body">
+                    <h3>Data economies</h3>
+                    <p>Data owners in any industry sell access instead of copies — monetizing datasets as a recurring asset while retaining ownership and auditability.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-                    <!-- Card -->
-                    <div class="card">
-                        <div class="card-image">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title">Enabling AI and Data Management for Research</h4>
-                            <p>Unlock the potential of your research with our cutting-edge AI and data management solutions. Our platform is designed for seamless AI model integration and sophisticated data analysis, making complex research tasks more manageable.</p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
+<!-- Why Amun AI -->
+<section id="why">
+    <div class="wrap">
+        <div class="reveal">
+            <div class="kicker">Why Amun AI</div>
+            <h2 class="section-title">Why organizations choose Amun AI.</h2>
+            <p class="section-lead">Patient records, genomes, financial transactions, government registries — the data AI needs most is exactly the data that cannot be moved. Amun AI makes it usable where it lives.</p>
+        </div>
+        <div class="product-grid why-grid">
+            <div class="product-card reveal">
+                <div class="product-media"><canvas id="anim-safe"></canvas></div>
+                <div class="product-body">
+                    <h3>Safer — data never moves</h3>
+                    <p>The work travels to the data. What is never copied can never leak.</p>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-media"><canvas id="anim-fast"></canvas></div>
+                <div class="product-body">
+                    <h3>Faster</h3>
+                    <p>No transfer agreements, no migrations. Collaborations start in days, not years.</p>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-media"><canvas id="anim-audit"></canvas></div>
+                <div class="product-body">
+                    <h3>In full control</h3>
+                    <p>Every request and result, recorded on your side. Compliance built in.</p>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-media"><canvas id="anim-asset"></canvas></div>
+                <div class="product-body">
+                    <h3>Access becomes an asset</h3>
+                    <p>Sell access to your data — without ever giving it away.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-                    <!-- Card -->
-                    <div class="card">
-                        <div class="card-image">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title">Advanced Collaboration on Sensitive Data</h4>
-                            <p>Facilitate secure and efficient collaboration on sensitive data with our platform. Combining the capabilities of Hypha trusted execution environments and "AI on Invisible Data", we support federated learning and reproducible research without compromising data privacy.</p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
+<!-- Contact / Demo -->
+<section id="contact">
+    <div class="wrap">
+        <div class="reveal">
+            <div class="kicker">Contact</div>
+            <h2 class="section-title">See it on your own data.</h2>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info reveal">
+                <p>Tell us about your datasets and your constraints — we'll show you how AI agents can work with them without a single byte leaving your control.</p>
+                <p><a class="mail" href="mailto:info@amun.ai">info@amun.ai</a></p>
+                <p class="addr">
+                    Amun AI AB<br>
+                    Stockholm, Sweden
+                </p>
+            </div>
+            <form class="reveal" id="demo" action="https://formspree.io/f/mpzkneyo" method="POST">
+                <label for="f-name">Name</label>
+                <input id="f-name" type="text" name="name" required>
+                <label for="f-email">Work email</label>
+                <input id="f-email" type="email" name="email" required>
+                <label for="f-org">Organization</label>
+                <input id="f-org" type="text" name="organization">
+                <label for="f-interest">I'm interested in</label>
+                <select id="f-interest" name="interest">
+                    <option>Mycolab</option>
+                    <option>Safebox</option>
+                    <option>Hypha Platform</option>
+                    <option>General inquiry</option>
+                </select>
+                <label for="f-msg">Message</label>
+                <textarea id="f-msg" name="message"></textarea>
+                <button class="btn btn-accent btn-lg" type="submit">Book a Demo</button>
+            </form>
+        </div>
+    </div>
+</section>
 
-                    <!-- Card -->
-                    <div class="card">
-                        <div class="card-image">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title">Generative AI for Workflow Automation</h4>
-                            <p>Revolutionize your research workflow with our generative AI-powered operating system. Our platform orchestrates computing resources across HPC, Kubernetes, and workstations, providing interfaces to Large Language Models (LLMs) to create fully automated workflows.</p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
-                    
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of cards-1 -->
-    <!-- end of services -->
+<footer>
+    <div class="wrap foot-inner">
+        <p>© 2025 Amun AI AB — Stockholm, Sweden</p>
+        <div class="foot-links">
+            <a href="https://www.nature.com/articles/s41592-019-0627-0" target="_blank" rel="noopener">ImJoy in Nature Methods</a>
+            <a href="https://se.linkedin.com/company/amun-ai" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="mailto:info@amun.ai">info@amun.ai</a>
+        </div>
+    </div>
+</footer>
 
-<!-- Details Lightbox -->
-	<div id="details-lightbox" class="lightbox-basic zoom-anim-dialog mfp-hide">
-        <div class="container">
-            <div class="row">
-                <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
-                <div class="col-lg-8">
-                    <div class="image-container">
-                        <img class="img-fluid" src="images/details-lightbox.png" alt="alternative">
-                    </div> <!-- end of image-container -->
-                </div> <!-- end of col -->
-                <div class="col-lg-4">
-                    <h3>ERP Integration</h3>
-                    <hr>
-                    <h5>Core service</h5>
-                    <p>Integrating ERPs is the bread and butter of our work. We've been doing it successfully for the last 5 years and we still enjoy it every time.</p>
-                    <ul class="list-unstyled li-space-lg">
-                        <li class="media">
-                            <i class="fas fa-square"></i><div class="media-body">List building framework</div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-square"></i><div class="media-body">Easy database browsing</div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-square"></i><div class="media-body">User administration</div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-square"></i><div class="media-body">Automate user signup</div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-square"></i><div class="media-body">Quick formatting tools</div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-square"></i><div class="media-body">Fast email checking</div>
-                        </li>
-                    </ul>
-                    <a class="btn-solid-reg mfp-close page-scroll" href="/#demo">SIGN UP</a> <a class="btn-outline-reg mfp-close as-button" href="#screenshots">BACK</a>
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of lightbox-basic -->
-    <!-- end of details lightbox -->
+<!-- Film modal (opened via "Watch the film" / nav "Film") -->
+<div class="film-modal" id="filmModal">
+    <div class="film-modal-inner">
+        <button class="film-modal-close" id="filmClose" aria-label="Close">×</button>
+        <video id="filmVideo" controls playsinline preload="metadata">
+            <source src="https://tl-mycelium-video2-c51a73c3.hypha.run/v4_review/web60_noncredential/mycolab_web_noncredential_v2.mp4" type="video/mp4">
+        </video>
+        <p class="film-modal-caption">Mycolab — AI collaboration on data that never leaves home.</p>
+    </div>
+</div>
 
-    <!-- Registration -->
-    <div id="demo" class="form-1">
-        <div class="container">
-            <div class="area-container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="text-container">
-                            <h3>Register for a Free Demo</h3>
-                            <p>Amun AI offers a comprehensive solution for secure and collaborative work on sensitive data. Experience firsthand how our trusted execution environment, powered by the Hypha platform, enables seamless collaboration on confidential datasets. Request a live demo to see the power of our platform in action.</p>
-                            <h4>Booking Your Demo Is Simple</h4>
-                            <p>Arranging a demonstration with our expert team is straightforward. Fill out the form, and we promise to connect with you shortly. Let us show you how our platform can transform your approach to sensitive data.</p>
-                            <ul class="list-unstyled li-space-lg">
-                                <li class="media">
-                                    <i class="fas fa-square"></i>
-                                    <div class="media-body">Learn about our platform for <strong>data management and AI-enabled analysis</strong>.</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-square"></i>
-                                    <div class="media-body">Explore how to securely collaborate on <strong>sensitive data</strong> using our trusted execution environment.</div>
-                                </li>
-                            </ul>
-                        </div> <!-- end of text-container -->
-                    </div> <!-- end of col -->
-                    
-                    <div class="col-lg-6">
+<script>
+// Nav scroll state
+var nav = document.getElementById('nav');
+function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 10); }
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
 
-                        <!-- Request Form -->
-                        <div class="form-container">
-                            <form id="registrationForm" data-toggle="validator" data-focus="false"
-                            action="https://formspree.io/f/mpzkneyo"
-                            method="POST">
-                                <div class="form-group">
-                                    <input type="text" class="form-control-input" id="rname" name="name" required>
-                                    <label class="label-control" for="rname">Full name</label>
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control-input" id="remail" name="email" required>
-                                    <label class="label-control" for="remail">Email</label>
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control-input" id="rphone" name="phone" required>
-                                    <label class="label-control" for="rphone">Phone</label>
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                                <div class="form-group">
-                                    <select class="form-control-select" id="rselect"  name="interests" required>
-                                        <option class="select-option" value="" disabled selected>Interested in...</option>
-                                        <option class="select-option" value="sensitive data">Sharing sensitive data</option>
-                                        <option class="select-option" value="privacy-preserving AI">Privacy-preserving AI</option>
-                                        <option class="select-option" value="other topics">Other topics</option>
-                                    </select>
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                                <div class="form-group checkbox">
-                                    <input type="checkbox" id="rterms" value="Agreed-to-Terms" name="terms" required>I agree with Amun AI's written <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms-conditions.html">Terms & Conditions</a>
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="form-control-submit-button">REGISTER</button>
-                                </div>
-                                <div class="form-message">
-                                    <div id="rmsgSubmit" class="h3 text-center hidden"></div>
-                                </div>
-                            </form>
-                        </div> <!-- end of form-container -->
-                        <!-- end of request form -->
+// Mobile menu
+var burger = document.getElementById('hamburger');
+var menu = document.getElementById('mobileMenu');
+burger.addEventListener('click', function () { menu.classList.toggle('open'); });
+menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { menu.classList.remove('open'); });
+});
 
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-            </div> <!-- end of area-container -->
-        </div> <!-- end of container -->
-    </div> <!-- end of form-1 -->
-    <!-- end of registration -->
+// Reveal on scroll
+var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
 
-
-    <!-- About -->
-    <div id="about" class="basic-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2 class="h2-heading">About Amun AI AB: Pioneers in AI-Driven Research</h2>
-                    <img class="divider-heading" src="images/divider.svg" alt="alternative">
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="text-container">
-                        <p>Founded on the principles of innovation and collaboration, Amun AI AB is a product of KTH's cutting-edge research. Our platform is not just a tool but a revolution in scientific data management, designed to meet the complex needs of researchers and institutions. Trusted by leading entities in the EU and USA, our solution is paving the way for a new era of data-driven discovery in healthcare and life sciences.</p>
-                    </div> <!-- end of text-container -->
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-            <div class="text-container">
-                <!-- Team Member -->
-                <div class="team-member">
-                    <div class="image-wrapper">
-                        <img class="img-fluid" src="images/JOANNA.jpeg" alt="alternative">
-                    </div> <!-- end of image-wrapper -->
-                    <div class="name">Joanna Hård</div>
-                    <div class="occupation">Chief Executive Officer</div>
-                    <span class="social-icons">
-                        <span class="fa-stack">
-                            <a href="https://twitter.com/joanna_hard" target="_blank">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-twitter fa-stack-1x"></i>
-                            </a>
-                        </span>
-                    </span> <!-- end of social-icons -->
-                </div> <!-- end of team-member -->
-                <!-- Team Member -->
-                <div class="team-member">
-                    <div class="image-wrapper">
-                        <img class="img-fluid" src="images/WEI.PNG" alt="alternative">
-                    </div> <!-- end of image-wrapper -->
-                    <div class="name">Wei Ouyang</div>
-                    <div class="occupation">Chief Technology Officer</div>
-                    <span class="social-icons">
-                        <span class="fa-stack">
-                            <a href="https://twitter.com/weioyang" target="_blank">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-twitter fa-stack-1x"></i>
-                            </a>
-                        </span>
-                    </span> <!-- end of social-icons -->
-                </div> <!-- end of team-member -->
-                <!-- end of team-member -->
-
-                <!-- Team Member -->
-                <div class="team-member">
-                    <div class="image-wrapper">
-                        <img class="img-fluid" src="images/EMMA.png" alt="alternative">
-                    </div> <!-- end of image-wrapper -->
-                    <div class="name">Emma Lundberg</div>
-                    <div class="occupation">Chief Scientific Officer</div>
-                    <span class="social-icons">
-                        <span class="fa-stack">
-                            <a href="https://twitter.com/Prof_Lundberg" target="_blank">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-twitter fa-stack-1x"></i>
-                            </a>
-                        </span>
-                    </span> <!-- end of social-icons -->
-                </div> <!-- end of team-member -->
-                <!-- end of team-member -->
-                <!-- end of team-member -->
-            </div> <!-- end of text-container -->
-        </div> <!-- end of container -->
-    </div> <!-- end of basic-2 -->
-    <!-- end of about -->
-
-    <!-- Contact -->
-    <div id="contact" class="basic-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-7">
-                    <div class="map-responsive">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2033.9515236090442!2d18.0234315!3d59.350457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f9d9c044c1fe5%3A0xfff6f935131557c1!2sSciLifeLab!5e0!3m2!1sen!2sus!4v1710804151618!5m2!1sen!2sus" allowfullscreen></iframe>
-                    </div>
-                </div> <!-- end of col -->
-                <div class="col-lg-5">
-                    <div class="text-container">
-                        <h2>Contact Details</h2>
-                        <p>Give us a call if you are thinking about sharing sensitive data for AI applications or just stop by our office for coffee</p>
-                        <div class="divider"></div>
-                        <h3>Meet us at SciLifeLab</h3>
-                        <ul class="list-unstyled li-space-lg">
-                            <li class="media">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div class="media-body">Tomtebodavägen 23, 171 65 Solna, Stockholm, Sweden</div>
-                            </li>
-                            <!-- <li class="media">
-                                <i class="fas fa-mobile-alt"></i>
-                                <div class="media-body">+46 000 000 00</div>
-                            </li> -->
-                            <li class="media">
-                                <i class="fas fa-envelope"></i>
-                                <div class="media-body"><a class="light-gray" href="mailto:info@amun.ai">info@amun.ai</a> <i class="fas fa-globe"></i><a class="light-gray" href="https://amun.ai/">amun.ai</a></div>
-                            </li>
-                        </ul>
-                    </div> <!-- end of text-container -->
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of basic-3 -->
-    <!-- end of contact -->
+// Film modal — the film opens only from "Watch the film" / nav "Film"
+var filmModal = document.getElementById('filmModal');
+var filmVideo = document.getElementById('filmVideo');
+document.querySelectorAll('[data-film]').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+        e.preventDefault();
+        filmModal.classList.add('open');
+        filmVideo.play();
+    });
+});
+function closeFilm() {
+    filmModal.classList.remove('open');
+    filmVideo.pause();
+}
+document.getElementById('filmClose').addEventListener('click', closeFilm);
+filmModal.addEventListener('click', function (e) { if (e.target === filmModal) closeFilm(); });
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeFilm(); });
 
 
-    <!-- Footer -->
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="footer-col first">
-                        <h5>About Amun AI</h5>
-                        <p class="p-small">We're passionate about making AI more accessible and privacy-aware</p>
-                    </div>
-                </div> <!-- end of col -->
-                <div class="col-md-4">
-                    <div class="footer-col middle">
-                        <h5>Important Links</h5>
-                        <ul class="list-unstyled li-space-lg p-small">
-                            <li class="media">
-                                <i class="fas fa-square"></i>
-                                <div class="media-body">Read our publication about <a class="blue" target="_blank" href="https://www.nature.com/articles/s41592-019-0627-0">the ImJoy platform</a></div>
-                            </li>
-                            <li class="media">
-                                <i class="fas fa-square"></i>
-                                <div class="media-body">Read our <a class="blue" href="terms-conditions.html">Terms & Conditions</a>, <a class="blue" href="privacy-policy.html">Privacy Policy</a></div>
-                            </li>
-                        </ul>
-                    </div>
-                </div> <!-- end of col -->
-                <div class="col-md-4">
-                    <div class="footer-col last">
-                        <h5>Social Media</h5>
-       
-                        <span class="fa-stack">
-                            <a href="https://se.linkedin.com/company/amun-ai" target="_blank">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-linkedin fa-stack-1x"></i>
-                            </a>
-                        </span>
-                       
-                    </div> 
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of footer -->  
-    <!-- end of footer -->
+// Industry cards: swap in a real video when one exists in videos/
+document.querySelectorAll('.uc-media[data-video]').forEach(function (m) {
+    var v = document.createElement('video');
+    v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true;
+    v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
+    v.preload = 'auto';
+    v.addEventListener('loadeddata', function () {
+        m.classList.add('has-video');
+        v.play().catch(function () {});
+    });
+    v.src = m.getAttribute('data-video');
+    m.appendChild(v);
+});
 
+// Opener globe — ported from the Amun AI deck's "problem slide" globe:
+// a slowly spinning 3D sphere of breathing teal dots; clusters of nearby
+// nodes connect with great-circle arcs that draw in, glow, and fade.
+// Drag horizontally to spin.
+var canvas = document.getElementById('mesh');
+var ctx = canvas.getContext('2d');
+var DPR = Math.min(window.devicePixelRatio || 1, 2);
+var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var TEAL = '52,135,139', INK_D = '28,68,71';
 
-    <!-- Copyright -->
-    <div class="copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <p class="p-small">Copyright © 2021 <a href="https://Amun AI.com">Amun AI</a> - All rights reserved</p>
-                </div> <!-- end of col -->
-            </div> <!-- enf of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of copyright --> 
-    <!-- end of copyright -->
-    
+(function () {
+    var N = (window.innerWidth < 700 ? 420 : 1000), SPIN = 2 * Math.PI / 30000, TILT = 0.32, FL = 3.5;
+    var dots = [], dv = [];
+    for (var i = 0; i < N; i++) {
+        var d = {
+            phi: Math.acos(2 * Math.random() - 1), th: Math.random() * Math.PI * 2,
+            bs: 0.0018 + Math.random() * 0.0012,
+            bp: Math.random() * Math.PI * 2
+        };
+        dots.push(d);
+        dv.push({
+            x: Math.sin(d.phi) * Math.cos(d.th),
+            y: Math.cos(d.phi),
+            z: Math.sin(d.phi) * Math.sin(d.th)
+        });
+    }
+    var W, H, CX, CY, R, sa = 0, lt = null;
+    var lineGroups = [], lastPick = null, pickCount = 0;
+    var ARC_STEPS = 48, DRAW_MS = 600, NEXT_MS = 900, TOTAL_MS = 1800, FADEOUT_MS = 500;
+    var dragging = false, lastX = 0;
 
-    <!-- Scripts -->
-    <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
-    <script src="js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
-    <script src="js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
-    <script src="js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
-    <script src="js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
-    <script src="js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
-    <script src="js/scripts.js"></script> <!-- Custom scripts -->
+    function resize() {
+        W = canvas.offsetWidth; H = canvas.offsetHeight;
+        canvas.width = W * DPR; canvas.height = H * DPR;
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        var mobile = W < 700;
+        CX = mobile ? W * 0.5 : W * 0.67;
+        CY = mobile ? H * 0.40 : H * 0.44;
+        R = Math.min(W, H) * (mobile ? 0.52 : 0.62);
+    }
+
+    function pj(x, y, z, cA, sA, cT, sT) {
+        var yt = y * cT - z * sT, zt = y * sT + z * cT;
+        var xs = x * cA + zt * sA, ys = yt, zs = -x * sA + zt * cA;
+        var sc = (R * FL) / (R * FL + zs + R);
+        return { sx: CX + xs * sc, sy: CY + ys * sc, zs: zs };
+    }
+    function arcPt(ai, bi, t, cA, sA, cT, sT) {
+        var a = dv[ai], b = dv[bi];
+        var dp = Math.max(-1, Math.min(1, a.x * b.x + a.y * b.y + a.z * b.z));
+        var om = Math.acos(dp);
+        var x, y, z;
+        if (om < 1e-6) { x = a.x + (b.x - a.x) * t; y = a.y + (b.y - a.y) * t; z = a.z + (b.z - a.z) * t; }
+        else {
+            var w0 = Math.sin((1 - t) * om) / Math.sin(om), w1 = Math.sin(t * om) / Math.sin(om);
+            x = w0 * a.x + w1 * b.x; y = w0 * a.y + w1 * b.y; z = w0 * a.z + w1 * b.z;
+        }
+        return pj(x * R, y * R, z * R, cA, sA, cT, sT);
+    }
+    function pickGroup(ts, byIdx) {
+        var front = [];
+        for (var i = 0; i < N; i++) { if (byIdx[i] && byIdx[i].zn > 0.68) front.push(i); }
+        if (front.length < 8) return;
+        var ci = front[Math.floor(Math.random() * front.length)];
+        var cv2 = dv[ci];
+        var nearby = front.filter(function (i) { return i !== ci; }).map(function (i) {
+            var d = dv[i];
+            return { idx: i, dist: 1 - (cv2.x * d.x + cv2.y * d.y + cv2.z * d.z) };
+        }).filter(function (x) { return x.dist > 0.01 && x.dist < 0.28; })
+          .sort(function (a, b) { return a.dist - b.dist; });
+        if (nearby.length < 3) return;
+        var nExtra = 3 + Math.floor(Math.random() * 3);
+        var cluster = [ci].concat(nearby.slice(0, nExtra).map(function (x) { return x.idx; }));
+        var inTree = { }; inTree[ci] = true; var inN = 1;
+        var edges = [];
+        while (inN < cluster.length) {
+            var best = Infinity, fromIdx = -1, toIdx = -1;
+            for (var a2 = 0; a2 < cluster.length; a2++) {
+                var ia = cluster[a2];
+                if (!inTree[ia]) continue;
+                var va = dv[ia];
+                for (var b2 = 0; b2 < cluster.length; b2++) {
+                    var ib = cluster[b2];
+                    if (inTree[ib]) continue;
+                    var vb = dv[ib];
+                    var dd = 1 - (va.x * vb.x + va.y * vb.y + va.z * vb.z);
+                    if (dd < best) { best = dd; fromIdx = ia; toIdx = ib; }
+                }
+            }
+            if (toIdx === -1) break;
+            inTree[toIdx] = true; inN++;
+            edges.push([fromIdx, toIdx]);
+        }
+        if (edges.length < 2) return;
+        pickCount++;
+        if (pickCount % 7 === 0) {
+            var far = front.filter(function (i) { return i !== ci && cluster.indexOf(i) < 0; }).map(function (i) {
+                var d = dv[i];
+                return { idx: i, dist: 1 - (cv2.x * d.x + cv2.y * d.y + cv2.z * d.z) };
+            }).filter(function (x) { return x.dist > 0.9; });
+            if (far.length > 0) {
+                var fi = far[Math.floor(Math.random() * far.length)].idx;
+                edges.push([ci, fi]);
+            }
+        }
+        lineGroups.push({ born: ts, edges: edges });
+    }
+
+    function draw(ts) {
+        if (!lt) lt = ts;
+        var dt = Math.min(ts - lt, 100), el = ts; lt = ts;
+        if (!dragging) sa += dt * SPIN;
+        var cA = Math.cos(sa), sA = Math.sin(sa), cT = Math.cos(TILT), sT = Math.sin(TILT);
+        ctx.clearRect(0, 0, W, H);
+        var proj = dots.map(function (d, idx) {
+            var b = Math.sin(el * d.bs + d.bp) * R * 0.015, rr = R + b;
+            var p = pj(rr * Math.sin(d.phi) * Math.cos(d.th), rr * Math.cos(d.phi), rr * Math.sin(d.phi) * Math.sin(d.th), cA, sA, cT, sT);
+            var zn = Math.max(0, (R - p.zs) / (2 * R));
+            return { sx: p.sx, sy: p.sy, zs: p.zs, idx: idx, zn: zn };
+        }).sort(function (a, b) { return b.zs - a.zs; });
+        var byIdx = new Array(N);
+        proj.forEach(function (p) { byIdx[p.idx] = p; });
+        if (lastPick === null || ts - lastPick >= NEXT_MS) { pickGroup(ts, byIdx); lastPick = ts; }
+        lineGroups = lineGroups.filter(function (g) { return ts - g.born < TOTAL_MS; });
+        ctx.lineWidth = 1.6; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+        var glowMap = { };
+        lineGroups.forEach(function (g) {
+            var age = ts - g.born;
+            var edgeProg = Math.min(1, age / DRAW_MS);
+            var fadeOut = age > TOTAL_MS - FADEOUT_MS ? 1 - (age - (TOTAL_MS - FADEOUT_MS)) / FADEOUT_MS : 1;
+            g.edges.forEach(function (e) {
+                var sp = byIdx[e[0]], tp = byIdx[e[1]];
+                if (!sp || sp.zn < 0.50 || !tp || tp.zn < 0.50) return;
+                var fade = Math.min(1, (Math.min(sp.zn, tp.zn) - 0.50) / 0.15) * fadeOut;
+                if (fade <= 0) return;
+                var aGlow = Math.min(1, edgeProg / 0.15) * fade;
+                var bGlow = Math.max(0, (edgeProg - 0.85) / 0.15) * fade;
+                if (!(e[0] in glowMap) || glowMap[e[0]] < aGlow) glowMap[e[0]] = aGlow;
+                if (!(e[1] in glowMap) || glowMap[e[1]] < bGlow) glowMap[e[1]] = bGlow;
+            });
+        });
+        lineGroups.forEach(function (g) {
+            var age = ts - g.born;
+            var steps = Math.max(1, Math.floor(Math.min(1, age / DRAW_MS) * ARC_STEPS));
+            var fadeOut = age > TOTAL_MS - FADEOUT_MS ? 1 - (age - (TOTAL_MS - FADEOUT_MS)) / FADEOUT_MS : 1;
+            g.edges.forEach(function (e) {
+                var sp = byIdx[e[0]], tp = byIdx[e[1]];
+                if (!sp || sp.zn < 0.50 || !tp || tp.zn < 0.50) return;
+                var fade = Math.min(1, (Math.min(sp.zn, tp.zn) - 0.50) / 0.15) * fadeOut;
+                if (fade <= 0) return;
+                ctx.strokeStyle = 'rgba(46,132,132,' + (fade * 0.55).toFixed(2) + ')';
+                ctx.beginPath();
+                var started = false;
+                for (var k = 0; k <= steps; k++) {
+                    var pt = arcPt(e[0], e[1], k / ARC_STEPS, cA, sA, cT, sT);
+                    if (pt.zs > -R * 0.1) break;
+                    if (!started) { ctx.moveTo(pt.sx, pt.sy); started = true; }
+                    else ctx.lineTo(pt.sx, pt.sy);
+                }
+                if (started) ctx.stroke();
+            });
+        });
+        Object.keys(glowMap).forEach(function (key) {
+            var glow = glowMap[key];
+            var p = byIdx[key]; if (!p) return;
+            var hue = 178 + p.zn * 4, sat = 40 + p.zn * 20;
+            ctx.shadowBlur = 16 * glow; ctx.shadowColor = 'hsla(' + hue + ',' + sat + '%,55%,' + glow.toFixed(2) + ')';
+            ctx.beginPath(); ctx.arc(p.sx, p.sy, 3.2, 0, Math.PI * 2);
+            ctx.fillStyle = 'hsla(' + hue + ',' + sat + '%,68%,' + (glow * 0.65).toFixed(2) + ')';
+            ctx.fill();
+        });
+        ctx.shadowBlur = 0;
+        proj.forEach(function (p) {
+            if (p.zn < 0.02) return;
+            var hue = 178 + p.zn * 4, sat = 32 + p.zn * 20, lum = 72 - p.zn * 20, alpha = 0.18 + p.zn * 0.82;
+            var glow = glowMap[p.idx] || 0;
+            ctx.beginPath(); ctx.arc(p.sx, p.sy, glow > 0 ? 2.4 : 1.5, 0, Math.PI * 2);
+            ctx.fillStyle = 'hsla(' + hue + ',' + Math.min(sat + glow * 20, 100) + '%,' + Math.max(lum - glow * 22, 30) + '%,' + Math.min(alpha + glow * 0.35, 1) + ')';
+            ctx.fill();
+        });
+        if (!reduced) requestAnimationFrame(draw);
+    }
+
+    // drag to spin
+    function dragStart(x) { dragging = true; lastX = x; }
+    function dragMove(x) { if (!dragging) return; sa += (x - lastX) * 0.004; lastX = x; }
+    function dragEnd() { dragging = false; }
+    canvas.addEventListener('mousedown', function (e) { dragStart(e.clientX); });
+    window.addEventListener('mousemove', function (e) { dragMove(e.clientX); });
+    window.addEventListener('mouseup', dragEnd);
+    canvas.addEventListener('touchstart', function (e) { dragStart(e.touches[0].clientX); }, { passive: true });
+    canvas.addEventListener('touchmove', function (e) { dragMove(e.touches[0].clientX); }, { passive: true });
+    canvas.addEventListener('touchend', dragEnd);
+
+    resize();
+    window.addEventListener('resize', resize);
+    if (reduced) { draw(0); } else { requestAnimationFrame(draw); }
+})();
+
+// ---- Mini animations for the three solution cards ----
+function miniCanvas(id, draw) {
+    var cv = document.getElementById(id);
+    if (!cv) return;
+    var c = cv.getContext('2d');
+    var w, h;
+    function rs() {
+        w = cv.offsetWidth; h = cv.offsetHeight;
+        cv.width = w * DPR; cv.height = h * DPR;
+        c.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+    rs();
+    window.addEventListener('resize', rs);
+    var tt = 0;
+    (function loop() {
+        tt++;
+        c.clearRect(0, 0, w, h);
+        draw(c, w, h, tt);
+        if (!reduced) requestAnimationFrame(loop);
+    })();
+}
+function dot(c, x, y, r, col) {
+    c.fillStyle = col;
+    c.beginPath(); c.arc(x, y, r, 0, Math.PI * 2); c.fill();
+}
+var tealA = function (a) { return 'rgba(' + TEAL + ',' + a + ')'; };
+var inkA = function (a) { return 'rgba(10,10,10,' + a + ')'; };
+
+// ---- Data protection: questions in, answers out, data stays ----
+// Deliberately benefit-level: no internals shown.
+miniCanvas('vis-protect', function (c, w, h, tt) {
+    var BX = w * 0.42;
+    // your-institution tint (right side)
+    c.fillStyle = 'rgba(' + TEAL + ',0.05)';
+    c.fillRect(BX, 0, w - BX, h);
+    c.setLineDash([5, 7]);
+    c.strokeStyle = inkA(0.3); c.lineWidth = 1.4;
+    c.beginPath(); c.moveTo(BX, h * 0.06); c.lineTo(BX, h * 0.94); c.stroke();
+    c.setLineDash([]);
+    c.font = '600 12px Inter, sans-serif';
+    c.textAlign = 'center';
+    c.fillStyle = inkA(0.5);
+    c.fillText('PARTNER', w * 0.2, h * 0.1);
+    c.fillStyle = 'rgba(' + INK_D + ',0.75)';
+    c.fillText('YOUR INSTITUTION', w * 0.71, h * 0.1);
+
+    // partner node
+    var ax = w * 0.2, ay = h * 0.5;
+    dot(c, ax, ay, 6, inkA(0.8));
+
+    // your data: anchored inside a boundary ring, never leaving
+    var dxc = w * 0.71, dyc = h * 0.5, dr2 = h * 0.26;
+    c.strokeStyle = 'rgba(' + INK_D + ',0.55)'; c.lineWidth = 1.3;
+    c.beginPath(); c.arc(dxc, dyc, dr2, 0, Math.PI * 2); c.stroke();
+    for (var i = 0; i < 6; i++) {
+        var a2 = tt * 0.006 + i * (Math.PI / 3);
+        dot(c, dxc + Math.cos(a2) * dr2 * 0.5, dyc + Math.sin(a2) * dr2 * 0.5, 2.6, tealA(0.85));
+    }
+    c.font = '500 11px Inter, sans-serif';
+    c.fillStyle = 'rgba(' + INK_D + ',0.6)';
+    c.fillText('your data — stays here', dxc, dyc + dr2 + 24);
+
+    // cycle: question in -> processing -> answer out
+    var CYC = 460, p = (tt % CYC) / CYC;
+    var topY = h * 0.3, botY = h * 0.7;
+    function qbez(p1, p2, peak, u) {
+        var iu = 1 - u;
+        return [iu * iu * p1[0] + 2 * iu * u * ((p1[0] + p2[0]) / 2) + u * u * p2[0],
+                iu * iu * p1[1] + 2 * iu * u * peak + u * u * p2[1]];
+    }
+    c.font = '500 11px Inter, sans-serif';
+    if (p < 0.3) {              // question travels in (over the top)
+        var q = p / 0.3, e2 = q < 0.5 ? 2 * q * q : 1 - Math.pow(-2 * q + 2, 2) / 2;
+        var pt = qbez([ax, ay - 14], [dxc, dyc - dr2 - 8], h * 0.14, e2);
+        dot(c, pt[0], pt[1], 3.5, inkA(0.8));
+        c.fillStyle = inkA(0.5);
+        c.fillText('question', pt[0], pt[1] - 12);
+    } else if (p < 0.5) {       // processed inside — ring pulses
+        var q3 = ((tt % 40) / 40);
+        c.strokeStyle = tealA(0.45 * (1 - q3));
+        c.lineWidth = 1.5;
+        c.beginPath(); c.arc(dxc, dyc, dr2 * 0.55 + q3 * dr2 * 0.4, 0, Math.PI * 2); c.stroke();
+    } else if (p < 0.8) {       // answer travels out (under the bottom)
+        var q4 = (p - 0.5) / 0.3, e4 = q4 < 0.5 ? 2 * q4 * q4 : 1 - Math.pow(-2 * q4 + 2, 2) / 2;
+        var pt2 = qbez([dxc, dyc + dr2 + 8], [ax, ay + 14], h * 0.86, e4);
+        dot(c, pt2[0], pt2[1], 3.5, tealA(0.95));
+        c.fillStyle = 'rgba(' + INK_D + ',0.6)';
+        c.fillText('answer', pt2[0], pt2[1] + 20);
+    } else if (p < 0.9) {       // received
+        var q5 = (p - 0.8) / 0.1;
+        c.strokeStyle = tealA(0.4 * (1 - q5));
+        c.beginPath(); c.arc(ax, ay, 9 + q5 * 16, 0, Math.PI * 2); c.stroke();
+    }
+
+    // every cycle, one data dot drifts toward the line and snaps back
+    var dp = (tt % CYC) / CYC;
+    if (dp > 0.55 && dp < 0.8) {
+        var du = (dp - 0.55) / 0.25;
+        var reach = Math.sin(du * Math.PI);
+        var ddx = dxc - dr2 * 0.5 - reach * (dxc - dr2 * 0.5 - BX - 14);
+        dot(c, ddx, dyc, 2.6, tealA(0.85));
+        if (reach > 0.96) {
+            c.strokeStyle = tealA(0.5);
+            c.lineWidth = 1.5;
+            c.beginPath(); c.arc(BX + 14, dyc, 8, 0, Math.PI * 2); c.stroke();
+        }
+    }
+});
+
+// ---- Why Amun AI ----
+
+// Faster — traditional vs Amun AI timeline
+miniCanvas('anim-fast', function (c, w, h, tt) {
+    var cycle = 420, p = (tt % cycle) / cycle;
+    c.font = '500 11px Inter, sans-serif';
+    c.textAlign = 'left';
+    var bx = w * 0.12, bw = w * 0.76;
+    // Traditional — slow crawl, never quite finishing
+    var y1 = h * 0.34;
+    c.fillStyle = inkA(0.5);
+    c.fillText('Data transfer agreements', bx, y1 - 12);
+    c.strokeStyle = inkA(0.15); c.lineWidth = 6; c.lineCap = 'round';
+    c.beginPath(); c.moveTo(bx, y1); c.lineTo(bx + bw, y1); c.stroke();
+    c.strokeStyle = inkA(0.45);
+    c.beginPath(); c.moveTo(bx, y1); c.lineTo(bx + bw * Math.min(0.55, p * 0.6), y1); c.stroke();
+    // Amun — fills fast, then pulses done
+    var y2 = h * 0.66;
+    c.fillStyle = inkA(0.5);
+    c.fillText('Amun AI — work goes to the data', bx, y2 - 12);
+    c.strokeStyle = inkA(0.12); c.lineWidth = 6;
+    c.beginPath(); c.moveTo(bx, y2); c.lineTo(bx + bw, y2); c.stroke();
+    var q = Math.min(1, p * 3.2);
+    var e2 = 1 - Math.pow(1 - q, 3);
+    c.strokeStyle = tealA(0.9);
+    c.beginPath(); c.moveTo(bx, y2); c.lineTo(bx + bw * e2, y2); c.stroke();
+    if (q >= 1) {
+        var pr = ((tt % 50) / 50);
+        c.strokeStyle = tealA(0.5 * (1 - pr)); c.lineWidth = 1.5;
+        c.beginPath(); c.arc(bx + bw, y2, 6 + pr * 14, 0, Math.PI * 2); c.stroke();
+        c.strokeStyle = tealA(1); c.lineWidth = 2;
+        c.beginPath();
+        c.moveTo(bx + bw - 4, y2); c.lineTo(bx + bw - 1, y2 + 3); c.lineTo(bx + bw + 5, y2 - 4);
+        c.stroke();
+    }
+});
+
+// Safer — attempts to pull data bounce off the boundary
+miniCanvas('anim-safe', function (c, w, h, tt) {
+    var cx = w * 0.5, cy = h * 0.52, r = Math.min(w, h) * 0.26;
+    // boundary ring
+    c.strokeStyle = 'rgba(' + INK_D + ',0.7)'; c.lineWidth = 1.5;
+    c.beginPath(); c.arc(cx, cy, r, 0, Math.PI * 2); c.stroke();
+    // data inside, calm
+    for (var i = 0; i < 5; i++) {
+        var a = tt * 0.004 + i * (Math.PI * 2 / 5);
+        dot(c, cx + Math.cos(a) * r * 0.45, cy + Math.sin(a) * r * 0.45, 2.2, tealA(0.75));
+    }
+    // shield mark at top of ring
+    c.fillStyle = '#fff';
+    c.strokeStyle = 'rgba(' + INK_D + ',0.9)'; c.lineWidth = 1.5;
+    c.beginPath();
+    c.moveTo(cx, cy - r - 9);
+    c.lineTo(cx + 8, cy - r - 5);
+    c.quadraticCurveTo(cx + 8, cy - r + 5, cx, cy - r + 9);
+    c.quadraticCurveTo(cx - 8, cy - r + 5, cx - 8, cy - r - 5);
+    c.closePath(); c.fill(); c.stroke();
+    // incoming grabs bounce off
+    var cycle = 160;
+    for (var k2 = 0; k2 < 2; k2++) {
+        var pp = ((tt + k2 * 80) % cycle) / cycle;
+        var ang = (Math.floor((tt + k2 * 80) / cycle) * 2.4 + k2 * 2.1) % (Math.PI * 2);
+        var sx2 = cx + Math.cos(ang) * r * 2.1, sy2 = cy + Math.sin(ang) * r * 2.1;
+        var exx = cx + Math.cos(ang) * r, eyy = cy + Math.sin(ang) * r;
+        if (pp < 0.5) { // approach
+            var q4 = pp / 0.5;
+            dot(c, sx2 + (exx - sx2) * q4, sy2 + (eyy - sy2) * q4, 2.8, inkA(0.7));
+        } else {       // bounce away + flash at boundary
+            var q5 = (pp - 0.5) / 0.5;
+            if (q5 < 0.3) {
+                c.strokeStyle = tealA(0.6 * (1 - q5 / 0.3)); c.lineWidth = 1.5;
+                c.beginPath(); c.arc(exx, eyy, 4 + q5 * 30, 0, Math.PI * 2); c.stroke();
+            }
+            dot(c, exx + (sx2 - exx) * q5 * 0.7, eyy + (sy2 - eyy) * q5 * 0.7, 2.8, inkA(0.7 * (1 - q5)));
+        }
+    }
+});
+
+// In full control — the audit log fills, line by line, on the owner's side
+miniCanvas('anim-audit', function (c, w, h, tt) {
+    var bx = w * 0.2, by = h * 0.16, bw = w * 0.6, bh = h * 0.68;
+    c.strokeStyle = inkA(0.5); c.lineWidth = 1.4;
+    c.fillStyle = '#fff';
+    c.beginPath();
+    if (c.roundRect) c.roundRect(bx, by, bw, bh, 10); else c.rect(bx, by, bw, bh);
+    c.fill(); c.stroke();
+    c.font = '600 11px Inter, sans-serif';
+    c.textAlign = 'left';
+    c.fillStyle = inkA(0.6);
+    c.fillText('AUDIT', bx + 14, by + 20);
+    c.strokeStyle = inkA(0.15); c.lineWidth = 1;
+    c.beginPath(); c.moveTo(bx + 12, by + 28); c.lineTo(bx + bw - 12, by + 28); c.stroke();
+    var cycle = 100, total = 5;
+    var shown = Math.floor(tt / cycle) % (total + 2); // pause at full before reset
+    shown = Math.min(shown, total);
+    var partial = (tt % cycle) / cycle;
+    for (var i = 0; i < shown + 1 && i < total; i++) {
+        var la = i < shown ? 1 : Math.min(1, partial * 2);
+        var ly = by + 44 + i * (bh - 56) / total;
+        c.fillStyle = inkA(0.12 * la);
+        dot(c, bx + 20, ly, 2.2, tealA(0.85 * la));
+        c.fillStyle = inkA(0.45 * la);
+        c.fillRect(bx + 32, ly - 2, bw * (0.32 + ((i * 0.23) % 0.2)), 4);
+        c.fillStyle = inkA(0.25 * la);
+        c.fillRect(bx + bw - 60, ly - 2, 34, 4); // timestamp
+        c.strokeStyle = tealA(0.9 * la); c.lineWidth = 1.5;
+        var ck = bx + bw - 16;
+        c.beginPath(); c.moveTo(ck - 5, ly); c.lineTo(ck - 2, ly + 3); c.lineTo(ck + 4, ly - 4); c.stroke();
+    }
+});
+
+// Access becomes an asset — access goes out, value comes back, data stays
+miniCanvas('anim-asset', function (c, w, h, tt) {
+    var dx3 = w * 0.22, dy3 = h * 0.48, px3 = w * 0.78, py3 = h * 0.48;
+    // data owner ring with anchored data
+    c.strokeStyle = 'rgba(' + INK_D + ',0.6)'; c.lineWidth = 1.3;
+    c.beginPath(); c.arc(dx3, dy3, 26, 0, Math.PI * 2); c.stroke();
+    for (var i = 0; i < 4; i++) {
+        var a6 = tt * 0.008 + i * 1.57;
+        dot(c, dx3 + Math.cos(a6) * 13, dy3 + Math.sin(a6) * 13, 2, tealA(0.85));
+    }
+    // partner
+    dot(c, px3, py3, 5, inkA(0.8));
+    c.font = '500 11px Inter, sans-serif'; c.textAlign = 'center';
+    c.fillStyle = inkA(0.5);
+    c.fillText('your data', dx3, dy3 + 46);
+    c.fillText('partner', px3, py3 + 46);
+    // access out (teal, top arc) — value back (ink, bottom arc)
+    for (var k4 = 0; k4 < 2; k4++) {
+        var ep2 = ((tt * 0.006 + k4 * 0.5) % 1);
+        var topY = dy3 - h * 0.22, botY = dy3 + h * 0.2;
+        var iu3 = 1 - ep2;
+        var ox = iu3 * iu3 * (dx3 + 26) + 2 * iu3 * ep2 * w * 0.5 + ep2 * ep2 * (px3 - 8);
+        var oy = iu3 * iu3 * dy3 + 2 * iu3 * ep2 * topY + ep2 * ep2 * py3;
+        dot(c, ox, oy, 2.6, tealA(0.95));
+        var vx = iu3 * iu3 * (px3 - 8) + 2 * iu3 * ep2 * w * 0.5 + ep2 * ep2 * (dx3 + 26);
+        var vy = iu3 * iu3 * py3 + 2 * iu3 * ep2 * botY + ep2 * ep2 * dy3;
+        dot(c, vx, vy, 2.6, inkA(0.7));
+    }
+    c.font = '500 10px Inter, sans-serif';
+    c.fillStyle = tealA(0.9);
+    c.fillText('access →', w * 0.5, dy3 - h * 0.18);
+    c.fillStyle = inkA(0.6);
+    c.fillText('← value', w * 0.5, dy3 + h * 0.22);
+});
+
+// ---- Nordic cinematic scenes for the use-case cards ----
+// Soft fog, muted light, slow drift — placeholders until real footage
+// is dropped into videos/uc-*.mp4 (auto-swapped when present).
+var NORDIC = {
+    skyTop: '#EDF1F1', skyMid: '#DDE5E6', skyLow: '#C9D4D6',
+    far: 'rgba(128,146,149,0.45)', near: 'rgba(78,96,99,0.8)'
+};
+function nordicScene(id, drawScene) {
+    miniCanvas(id, function (c, w, h, tt) {
+        var g = c.createLinearGradient(0, 0, 0, h);
+        g.addColorStop(0, NORDIC.skyTop);
+        g.addColorStop(0.55, NORDIC.skyMid);
+        g.addColorStop(1, NORDIC.skyLow);
+        c.fillStyle = g; c.fillRect(0, 0, w, h);
+        // pale low sun
+        var sg = c.createRadialGradient(w * 0.72, h * 0.3, 0, w * 0.72, h * 0.3, h * 0.35);
+        sg.addColorStop(0, 'rgba(255,253,247,0.75)');
+        sg.addColorStop(1, 'rgba(255,253,247,0)');
+        c.fillStyle = sg; c.beginPath(); c.arc(w * 0.72, h * 0.3, h * 0.35, 0, Math.PI * 2); c.fill();
+        drawScene(c, w, h, tt);
+        // drifting fog banks
+        for (var f = 0; f < 3; f++) {
+            var fx3 = ((tt * (0.12 + f * 0.05) + f * 300) % (w * 1.6)) - w * 0.3;
+            var fg = c.createRadialGradient(fx3, h * (0.62 + f * 0.12), 0, fx3, h * (0.62 + f * 0.12), w * 0.3);
+            fg.addColorStop(0, 'rgba(236,241,241,0.28)');
+            fg.addColorStop(1, 'rgba(236,241,241,0)');
+            c.fillStyle = fg;
+            c.fillRect(0, 0, w, h);
+        }
+        // film grain
+        for (var gr = 0; gr < 50; gr++) {
+            c.fillStyle = 'rgba(40,50,52,' + (Math.random() * 0.05) + ')';
+            c.fillRect(Math.random() * w, Math.random() * h, 1, 1);
+        }
+    });
+}
+
+// Healthcare — hospital silhouette by still water, ECG pulse
+nordicScene('uc-health', function (c, w, h, tt) {
+    var hy = h * 0.68;
+    c.fillStyle = NORDIC.far;
+    c.fillRect(w * 0.08, hy - h * 0.22, w * 0.2, h * 0.22);
+    c.fillRect(w * 0.55, hy - h * 0.16, w * 0.3, h * 0.16);
+    c.fillStyle = NORDIC.near;
+    c.fillRect(w * 0.3, hy - h * 0.3, w * 0.22, h * 0.3);
+    // cross on the main building — soft teal glow
+    var cxp = w * 0.41, cyp = hy - h * 0.24;
+    var gl = 0.6 + 0.3 * Math.sin(tt * 0.02);
+    c.fillStyle = 'rgba(' + TEAL + ',' + gl + ')';
+    c.fillRect(cxp - 2, cyp - 8, 4, 16);
+    c.fillRect(cxp - 8, cyp - 2, 16, 4);
+    // water band
+    c.fillStyle = 'rgba(160,178,181,0.35)';
+    c.fillRect(0, hy, w, h - hy);
+    // ECG line traveling across the water
+    c.strokeStyle = 'rgba(' + TEAL + ',0.8)'; c.lineWidth = 1.4;
+    c.beginPath();
+    var ex = (tt * 0.9) % (w * 1.3) - w * 0.15, ey = h * 0.82;
+    c.moveTo(ex - 70, ey);
+    c.lineTo(ex - 30, ey); c.lineTo(ex - 22, ey - 10); c.lineTo(ex - 14, ey + 12);
+    c.lineTo(ex - 8, ey - 4); c.lineTo(ex, ey); c.lineTo(ex + 30, ey);
+    c.stroke();
+});
+
+// Government — classical facade, slow birds
+nordicScene('uc-gov', function (c, w, h, tt) {
+    var hy = h * 0.72;
+    c.fillStyle = NORDIC.near;
+    // pediment
+    c.beginPath();
+    c.moveTo(w * 0.28, hy - h * 0.3); c.lineTo(w * 0.5, hy - h * 0.42); c.lineTo(w * 0.72, hy - h * 0.3);
+    c.closePath(); c.fill();
+    // columns
+    for (var i = 0; i < 5; i++) {
+        c.fillRect(w * (0.31 + i * 0.09), hy - h * 0.28, w * 0.035, h * 0.28);
+    }
+    c.fillRect(w * 0.26, hy - h * 0.02, w * 0.48, h * 0.02);
+    // ground
+    c.fillStyle = 'rgba(150,168,171,0.4)';
+    c.fillRect(0, hy, w, h - hy);
+    // birds drifting
+    c.strokeStyle = 'rgba(60,76,79,0.7)'; c.lineWidth = 1.2;
+    for (var b = 0; b < 3; b++) {
+        var bx2 = ((tt * (0.4 + b * 0.12) + b * 230) % (w * 1.4)) - w * 0.2;
+        var by2 = h * (0.18 + b * 0.07) + Math.sin(tt * 0.02 + b) * 4;
+        c.beginPath();
+        c.moveTo(bx2 - 5, by2); c.quadraticCurveTo(bx2 - 1, by2 - 4, bx2, by2);
+        c.quadraticCurveTo(bx2 + 1, by2 - 4, bx2 + 5, by2);
+        c.stroke();
+    }
+});
+
+// Finance — skyline, rising index line
+nordicScene('uc-fin', function (c, w, h, tt) {
+    var hy = h * 0.78;
+    var bld = [[0.06, 0.3], [0.17, 0.42], [0.29, 0.26], [0.4, 0.5], [0.53, 0.36], [0.64, 0.56], [0.77, 0.3], [0.88, 0.44]];
+    bld.forEach(function (bd, i) {
+        c.fillStyle = i % 2 ? NORDIC.near : NORDIC.far;
+        c.fillRect(w * bd[0], hy - h * bd[1], w * 0.095, h * bd[1]);
+        // sparse lit windows
+        c.fillStyle = 'rgba(255,250,235,' + (0.25 + 0.15 * Math.sin(tt * 0.01 + i * 2)) + ')';
+        for (var wd = 0; wd < 3; wd++) {
+            c.fillRect(w * bd[0] + 4 + wd * 8, hy - h * bd[1] + 10 + ((i * 13 + wd * 29) % 40), 3, 3);
+        }
+    });
+    c.fillStyle = 'rgba(150,168,171,0.4)';
+    c.fillRect(0, hy, w, h - hy);
+    // index line climbing across the sky
+    c.strokeStyle = 'rgba(' + TEAL + ',0.85)'; c.lineWidth = 1.5;
+    c.beginPath();
+    var prog = (tt % 500) / 500;
+    for (var x2 = 0; x2 <= prog; x2 += 0.02) {
+        var px2 = w * 0.08 + x2 * w * 0.84;
+        var py2 = h * 0.3 - x2 * h * 0.12 + Math.sin(x2 * 26) * h * 0.035;
+        if (x2 === 0) c.moveTo(px2, py2); else c.lineTo(px2, py2);
+    }
+    c.stroke();
+});
+
+// Intra-corporate — two towers, a lit bridge of data
+nordicScene('uc-corp', function (c, w, h, tt) {
+    var hy = h * 0.8;
+    c.fillStyle = NORDIC.near;
+    c.fillRect(w * 0.1, hy - h * 0.52, w * 0.16, h * 0.52);
+    c.fillRect(w * 0.74, hy - h * 0.46, w * 0.16, h * 0.46);
+    c.fillStyle = NORDIC.far;
+    c.fillRect(w * 0.3, hy - h * 0.3, w * 0.1, h * 0.3);
+    c.fillRect(w * 0.6, hy - h * 0.26, w * 0.1, h * 0.26);
+    c.fillStyle = 'rgba(150,168,171,0.4)';
+    c.fillRect(0, hy, w, h - hy);
+    // data lights crossing between the two headquarters
+    var y3 = hy - h * 0.38;
+    c.setLineDash([2, 6]);
+    c.strokeStyle = 'rgba(' + TEAL + ',0.35)'; c.lineWidth = 1;
+    c.beginPath(); c.moveTo(w * 0.26, y3); c.quadraticCurveTo(w * 0.5, y3 - h * 0.12, w * 0.74, y3 + h * 0.05); c.stroke();
+    c.setLineDash([]);
+    for (var k3 = 0; k3 < 3; k3++) {
+        var pp2 = ((tt * 0.006 + k3 * 0.33) % 1);
+        var iu2 = 1 - pp2;
+        var qx2 = iu2 * iu2 * w * 0.26 + 2 * iu2 * pp2 * w * 0.5 + pp2 * pp2 * w * 0.74;
+        var qy2 = iu2 * iu2 * y3 + 2 * iu2 * pp2 * (y3 - h * 0.12) + pp2 * pp2 * (y3 + h * 0.05);
+        dot(c, qx2, qy2, 2.4, tealA(0.9));
+    }
+});
+
+// Research — flask against a fjord ridge, rising bubbles
+nordicScene('uc-res', function (c, w, h, tt) {
+    var hy = h * 0.78;
+    c.fillStyle = NORDIC.far;
+    c.beginPath();
+    c.moveTo(0, hy - h * 0.12); c.lineTo(w * 0.3, hy - h * 0.3); c.lineTo(w * 0.55, hy - h * 0.14);
+    c.lineTo(w * 0.8, hy - h * 0.26); c.lineTo(w, hy - h * 0.1); c.lineTo(w, hy); c.lineTo(0, hy);
+    c.closePath(); c.fill();
+    c.fillStyle = 'rgba(150,168,171,0.4)';
+    c.fillRect(0, hy, w, h - hy);
+    // flask silhouette
+    var fx4 = w * 0.42, fy4 = h * 0.52, s4 = h * 0.2;
+    c.strokeStyle = 'rgba(50,66,69,0.9)'; c.lineWidth = 2;
+    c.beginPath();
+    c.moveTo(fx4 - s4 * 0.18, fy4 - s4);
+    c.lineTo(fx4 - s4 * 0.18, fy4 - s4 * 0.25);
+    c.lineTo(fx4 - s4 * 0.62, fy4 + s4 * 0.55);
+    c.lineTo(fx4 + s4 * 0.62, fy4 + s4 * 0.55);
+    c.lineTo(fx4 + s4 * 0.18, fy4 - s4 * 0.25);
+    c.lineTo(fx4 + s4 * 0.18, fy4 - s4);
+    c.moveTo(fx4 - s4 * 0.3, fy4 - s4); c.lineTo(fx4 + s4 * 0.3, fy4 - s4);
+    c.stroke();
+    // liquid
+    c.fillStyle = 'rgba(' + TEAL + ',0.35)';
+    c.beginPath();
+    c.moveTo(fx4 - s4 * 0.44, fy4 + s4 * 0.25);
+    c.lineTo(fx4 - s4 * 0.62, fy4 + s4 * 0.55);
+    c.lineTo(fx4 + s4 * 0.62, fy4 + s4 * 0.55);
+    c.lineTo(fx4 + s4 * 0.44, fy4 + s4 * 0.25);
+    c.closePath(); c.fill();
+    // bubbles rising
+    for (var bb = 0; bb < 4; bb++) {
+        var bp = ((tt * 0.008 + bb * 0.25) % 1);
+        dot(c, fx4 + Math.sin(bp * 9 + bb) * 8, fy4 + s4 * 0.2 - bp * s4 * 1.7, 1.6 + bb * 0.4, tealA(0.7 * (1 - bp)));
+    }
+});
+
+// Data economies — harbor cranes, value exchanged both ways
+nordicScene('uc-econ', function (c, w, h, tt) {
+    var hy = h * 0.74;
+    // two shores
+    c.fillStyle = NORDIC.near;
+    c.beginPath(); c.moveTo(0, hy); c.lineTo(w * 0.3, hy); c.lineTo(w * 0.22, hy - h * 0.08); c.lineTo(0, hy - h * 0.1); c.closePath(); c.fill();
+    c.beginPath(); c.moveTo(w, hy); c.lineTo(w * 0.7, hy); c.lineTo(w * 0.78, hy - h * 0.08); c.lineTo(w, hy - h * 0.1); c.closePath(); c.fill();
+    // cranes
+    c.strokeStyle = 'rgba(50,66,69,0.9)'; c.lineWidth = 2;
+    c.beginPath();
+    c.moveTo(w * 0.12, hy - h * 0.09); c.lineTo(w * 0.12, hy - h * 0.4); c.lineTo(w * 0.28, hy - h * 0.3);
+    c.moveTo(w * 0.88, hy - h * 0.09); c.lineTo(w * 0.88, hy - h * 0.36); c.lineTo(w * 0.72, hy - h * 0.27);
+    c.stroke();
+    // water
+    c.fillStyle = 'rgba(150,168,171,0.4)';
+    c.fillRect(0, hy, w, h - hy);
+    // exchange: access goes out (teal), value comes back (ink) — data never crosses
+    var ay4 = hy - h * 0.34;
+    for (var e4 = 0; e4 < 2; e4++) {
+        var ep = ((tt * 0.005 + e4 * 0.5) % 1);
+        var lx4 = w * 0.28 + (w * 0.72 - w * 0.28) * ep;
+        var ly4 = ay4 - Math.sin(ep * Math.PI) * h * 0.1;
+        dot(c, lx4, ly4, 2.6, tealA(0.9));
+        var rx4 = w * 0.72 - (w * 0.72 - w * 0.28) * ep;
+        var ry4 = ay4 + h * 0.06 - Math.sin(ep * Math.PI) * h * 0.04;
+        dot(c, rx4, ry4, 2.2, inkA(0.7));
+    }
+});
+</script>
 </body>
 </html>
